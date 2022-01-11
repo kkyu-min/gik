@@ -201,12 +201,70 @@
 //   },
 // ];
 
-import { db } from "../db/database.js";
+//import { db } from "../db/database.js";
+
+import { sequelize } from "../db/database.js";
+import SQ from "sequelize";
+const DataTypes = SQ.DataTypes;
+
+const exhibition = sequelize.define(
+  "exhibition",
+  {
+    id: {
+      type: DataTypes.CHAR(4),
+      allowNull: false,
+      primaryKey: true,
+    },
+    poster: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    title: {
+      type: DataTypes.STRING(45),
+      allowNull: false,
+    },
+    subtile: {
+      type: DataTypes.STRING(45),
+      allowNull: false,
+    },
+    desc: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    startDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    endDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    onlineLink: {
+      type: DataTypes.STRING(300),
+      allowNull: true,
+    },
+    location: {
+      type: DataTypes.STRING(200),
+      allowNull: false,
+    },
+    dept: {
+      type: DataTypes.STRING(45),
+      allowNull: false,
+    },
+    category: {
+      type: DataTypes.STRING(45),
+      allowNull: false,
+    },
+  },
+  { timestamps: false }
+);
 
 export async function getAll() {
-  return db.execute("select * from exhibition_1").then((result) => result[0]);
+  //return db.execute("select * from exhibition_1").then((result) => result[0]);
+  return exhibition.findAll();
 }
 
 export async function getById(id) {
-  return db.execute("select * from exhibition_1 where id=?", [id]).then((result) => result[0]);
+  //return db.execute("select * from exhibition_1 where id=?", [id]).then((result) => result[0]);
+  return exhibition.findByPk(id);
 }

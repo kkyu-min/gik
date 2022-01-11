@@ -66,12 +66,78 @@
 //   },
 // ];
 
-import { db } from "../db/database.js";
+//import { db } from "../db/database.js";
+
+import { sequelize } from "../db/database.js";
+import SQ from "sequelize";
+const DataTypes = SQ.DataTypes;
+
+const goods = sequelize.define(
+  "good",
+  {
+    id: {
+      type: DataTypes.CHAR(3),
+      allowNull: false,
+      primaryKey: true,
+    },
+    poster: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    title: {
+      type: DataTypes.STRING(45),
+      allowNull: false,
+    },
+    startDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    endDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    category: {
+      type: DataTypes.STRING(45),
+      allowNull: false,
+    },
+  },
+  { timestamps: false }
+);
+
+const goodsBanner = sequelize.define(
+  "goodsBanners",
+  {
+    id: {
+      type: DataTypes.CHAR(13),
+      allowNull: false,
+      primaryKey: true,
+    },
+    poster: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    title: {
+      type: DataTypes.STRING(45),
+      allowNull: false,
+    },
+    startDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    endDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+  },
+  { timestamps: false }
+);
 
 export async function getBanner() {
-  return db.execute("select * from goodsBanner_1").then((result) => result[0]);
+  //return db.execute("select * from goodsBanner_1").then((result) => result[0]);
+  return goodsBanner.findAll();
 }
 
 export async function getGoods() {
-  return db.execute("select * from goods").then((result) => result[0]);
+  //return db.execute("select * from goods").then((result) => result[0]);
+  return goods.findAll();
 }
