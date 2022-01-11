@@ -73,5 +73,5 @@ export async function getBanner() {
 }
 
 export async function getGoods() {
-  return db.execute("select * from goods").then((result) => result[0]);
+  return db.execute("select * from goods_1").then((result) => result[0]);
 }
