@@ -134,10 +134,12 @@ const goodsBanner = sequelize.define(
 
 export async function getBanner() {
   //return db.execute("select * from goodsBanner_1").then((result) => result[0]);
+  //return goodsBanner.findAll();
   return goodsBanner.findAll();
 }
 
 export async function getGoods() {
   //return db.execute("select * from goods").then((result) => result[0]);
+  //return goods.findAll();
   return goods.findAll();
 }
