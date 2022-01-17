@@ -26,8 +26,10 @@ app.use((error, req, res, next) => {
   console.error(error);
   res.sendStatus(500);
 });
+
 sequelize.sync().then((client) => {
   //console.log(client);
   app.listen(config.host.port);
 });
+
 //db.getConnection();
